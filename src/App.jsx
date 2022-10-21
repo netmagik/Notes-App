@@ -6,6 +6,9 @@ import { nanoid } from "nanoid";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 export default function App() {
+
+  const DeploySplit = Split.default? Split.default: Split;
+
   // Get Notes from Local Storage if they exist, otherwise []
   const [notes, setNotes] = useState(
     () => JSON.parse(localStorage.getItem("notes")) || []
@@ -67,7 +70,7 @@ export default function App() {
   return (
     <main>
       {notes.length > 0 ? (
-        <Split sizes={[30, 70]} direction="horizontal" className="split">
+        <DeploySplit sizes={[30, 70]} direction="horizontal" className="split">
           <Sidebar
             notes={notes}
             currentNote={findCurrentNote()}
@@ -79,7 +82,7 @@ export default function App() {
           {currentNoteId && notes.length > 0 && (
             <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
           )}
-        </Split>
+        </DeploySplit>
       ) : (
         <div className="no-notes">
           <h1>You have no notes</h1>

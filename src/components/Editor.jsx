@@ -3,6 +3,9 @@ import ReactMde from "react-mde"
 import Showdown from "showdown"
 
 export default function Editor({ currentNote, updateNote }) {
+
+    const DeployReactMde = ReactMde.default? ReactMde.default: ReactMde;
+
     const [selectedTab, setSelectedTab] = React.useState("write")
 
     const converter = new Showdown.Converter({
@@ -14,7 +17,7 @@ export default function Editor({ currentNote, updateNote }) {
 
     return (
         <section className="pane editor">
-            <ReactMde
+            <DeployReactMde
                 value={currentNote.body}
                 onChange={updateNote}
                 selectedTab={selectedTab}
